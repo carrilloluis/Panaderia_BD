@@ -1,0 +1,37 @@
+@startuml pnd1
+	skin rose
+	hide circle
+	hide empty members
+
+	entity Categoría {
+		*id : INTEGER
+		denominación : VARCHAR
+	}
+	entity InventarioHorneado {
+		*id : INTEGER
+		id_categoría : INTEGER
+		denominación : VARCHAR
+		unidad_venta : CHAR
+		cantidad : NUMERIC
+		fecha_horneado : DATE
+	}
+	entity Venta {
+		*id : GUID
+		id_cliente : INTEGER
+		id_empleado : INTEGER
+		total : NUMERIC
+		estado : INTEGER
+	}
+	entity DetalleVenta {
+		*id : INTEGER
+		id_venta : INTEGER
+		id_producto : INTEGER
+		cantidad : NUMERIC
+		precio_unitario : NUMERIC
+		descuento : NUMERIC
+	}
+	Categoría ||-d-o{ InventarioHorneado
+	InventarioHorneado ||-d-o{ DetalleVenta
+	Venta ||-r-o{ DetalleVenta
+@enduml
+ 
